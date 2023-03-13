@@ -12,7 +12,7 @@ function Routes() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{ title: 'Easy Market' }}
+          options={{headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

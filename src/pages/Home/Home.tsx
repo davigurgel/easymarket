@@ -1,98 +1,53 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { Box, Button, Center, Input, Text } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
-import { Camera } from 'react-native-vision-camera';
+import { Switch } from 'react-native';
 
-import CameraFrame from '~/Components/CameraFrame/CameraFrame';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import Header from '~/Components/Header/Header';
+import { CURRENCIES } from '~/constants/currencies';
+import { LANGUAGES } from '~/constants/languages';
+import { useI18n } from '~/hooks/useI18n';
+import { Container, Title, SafeArea } from './styles';
 
 function Home() {
-  const [activeCamera, setActiveCamera] = useState(false)
-  const [cameraText, setCameraText] = useState<any>(null)
+  const { t, c, setLocale, setCurrency } = useI18n()
+  const [isBR, setIsBR] = useState(true)
+  const [isEUR, setIsEUR] = useState(false)
 
-  const handleCamera = async () => {
-    const cameraPermission = await Camera.getCameraPermissionStatus()
+  const handleLocaleChange = () => {
+    setIsBR(state => !state)
 
-    if (cameraPermission !== 'authorized') {
-      await Camera.requestCameraPermission();
-      setActiveCamera((state) => !state)
-    }
-
-    if (cameraPermission === 'authorized') {
-      setActiveCamera((state) => !state)
-    }
+    setLocale(isBR ? LANGUAGES.ptBR : LANGUAGES.enUS)
   }
 
-  const handleCameraValue = (value: any) => {
-    setCameraText(value)
+  const handleCurrencyChange = () => {
+    setIsEUR(state => !state)
+
+    setCurrency(isEUR ? CURRENCIES.EUR : CURRENCIES.BRL)
   }
 
   return (
-    <View style={styles.container}>
-      <Center>
-        <Box w="60%" alignItems="center" backgroundColor="white" p="8">
-          <Box w="100%">
-            <Box mb="3">
-              <Text>Quantidade:</Text>
-              <Input
-                placeholder="Input"
-                w="100%"
-              />
-            </Box>
-            <Box>
-              <Text>Valor:</Text>
-              <Input
-                placeholder="Input"
-                w="100%"
-                value={cameraText || ''}
-                InputRightElement={
-                  <Button
-                    variant="outline"
-                    size="xs"
-                    rounded="none"
-                    h="full"
-                    onPress={handleCamera}
-                  >
-                    <Ionicons name="md-camera-sharp" size={24} color="white" />
-                  </Button>
-                }
-              />
-            </Box>
-          </Box>
-        </Box>
-      </Center>
-    {
-      activeCamera && (
-        <View style={styles.cameraContainer}>
-          <CameraFrame
-            enableCamera={activeCamera}
-            onClose={handleCamera}
-            handleText={handleCameraValue}
-          />
-        </View>
-      )
-    }
-    </View>
+    <Container>
+      <SafeArea />
+      <Header />
+      <Title style={{color: '#fff'}}>{t('general.welcome')}</Title>
+      <Title style={{color: '#fff'}}>{c(2000.99)}</Title>
+
+      <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isBR ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={handleLocaleChange}
+        value={isBR}
+      />
+
+      <Switch
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={isEUR ? '#f5dd4b' : '#f4f3f4'}
+        ios_backgroundColor="#3e3e3e"
+        onValueChange={handleCurrencyChange}
+        value={isEUR}
+      />
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative'
-  },
-  cameraContainer: {
-    position: 'absolute',
-    flex: 1,
-    top: 0,
-    left: 0,
-    zIndex: 99,
-    width: windowWidth,
-    height: windowHeight
-  }
-})
 
 export default Home;

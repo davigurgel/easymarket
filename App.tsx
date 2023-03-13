@@ -1,13 +1,20 @@
-import "react-native-reanimated"
-import React from "react";
-import { NativeBaseProvider } from "native-base";
+import 'react-native-reanimated'
+import React from 'react';
+import { NativeBaseProvider } from 'native-base';
+import { ThemeProvider } from 'styled-components/native';
 
-import Routes from "~/Routes";
+import Routes from '~/Routes';
+import theme from '~/theme/theme';
+import LocaleProvider from '~/Context/LocaleProvider';
 
 export default function App() {
   return (
     <NativeBaseProvider>
-      <Routes />
+      <ThemeProvider theme={theme}>
+        <LocaleProvider>
+          <Routes />
+        </LocaleProvider>
+      </ThemeProvider>
     </NativeBaseProvider>
   );
 }
