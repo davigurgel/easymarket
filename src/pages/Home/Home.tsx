@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Switch } from 'react-native';
 
-import Header from '~/Components/Header/Header';
+import Header from '~/components/Header/Header';
 import { CURRENCIES } from '~/constants/currencies';
 import { LANGUAGES } from '~/constants/languages';
 import { useI18n } from '~/hooks/useI18n';

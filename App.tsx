@@ -5,7 +5,7 @@ import { ThemeProvider } from 'styled-components/native';
 
 import Routes from '~/Routes';
 import theme from '~/theme/theme';
-import LocaleProvider from '~/Context/LocaleProvider';
+import LocaleProvider from '~/context/LocaleProvider';
 
 export default function App() {
   return (

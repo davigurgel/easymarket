@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { LocaleContext } from "~/Context/LocaleProvider"
+import { LocaleContext } from "~/context/LocaleProvider"
 
 export const useI18n = () => {
   const locale = useContext(LocaleContext)

@@ -4,7 +4,7 @@ import { I18n } from 'i18n-js';
 
 import ptBR from '~/i18n/ptBR';
 import enUS from '~/i18n/enUS';
-import * as currencies from '~/i18n/Currency'
+import * as currencies from '~/i18n/currency'
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 type LocaleProps = {
