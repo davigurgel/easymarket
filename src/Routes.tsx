@@ -1,5 +1,6 @@
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Header from './components/Header/Header';
 
 import Home from './pages/Home/Home';
 
@@ -12,7 +13,7 @@ function Routes() {
         <Stack.Screen
           name="Home"
           component={Home}
-          options={{headerShown: false}}
+          options={{header: () => <Header />}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,51 +1,51 @@
-import React, { useState } from 'react';
-import { Switch } from 'react-native';
+import React from 'react';
+import { FlatGrid } from 'react-native-super-grid';
+import { Ionicons } from '@expo/vector-icons';
+import { useTheme } from 'styled-components/native';
 
-import Header from '~/components/Header/Header';
-import { CURRENCIES } from '~/constants/currencies';
-import { LANGUAGES } from '~/constants/languages';
-import { useI18n } from '~/hooks/useI18n';
-import { Container, Title, SafeArea } from './styles';
+import { Card, CardCurrency, CardTitle } from '~/components/Card/Card';
+import { Container, Content } from './styles';
 
 function Home() {
-  const { t, c, setLocale, setCurrency } = useI18n()
-  const [isBR, setIsBR] = useState(true)
-  const [isEUR, setIsEUR] = useState(false)
-
-  const handleLocaleChange = () => {
-    setIsBR(state => !state)
-
-    setLocale(isBR ? LANGUAGES.ptBR : LANGUAGES.enUS)
-  }
-
-  const handleCurrencyChange = () => {
-    setIsEUR(state => !state)
-
-    setCurrency(isEUR ? CURRENCIES.EUR : CURRENCIES.BRL)
-  }
-
+  const theme = useTheme()
+  const data = [
+    {
+      id: 1,
+      title: 'Última compra:',
+      value: 200.99,
+    },
+    {
+      id: 2,
+      title: 'Último mês:',
+      value: 2170.99,
+    },
+    {
+      id: 3,
+      title: 'Última compra:',
+      value: 2200.99,
+    },
+  ]
   return (
     <Container>
-      <SafeArea />
-      <Header />
-      <Title style={{color: '#fff'}}>{t('general.welcome')}</Title>
-      <Title style={{color: '#fff'}}>{c(2000.99)}</Title>
-
-      <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={isBR ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={handleLocaleChange}
-        value={isBR}
-      />
-
-      <Switch
-        trackColor={{false: '#767577', true: '#81b0ff'}}
-        thumbColor={isEUR ? '#f5dd4b' : '#f4f3f4'}
-        ios_backgroundColor="#3e3e3e"
-        onValueChange={handleCurrencyChange}
-        value={isEUR}
-      />
+      <Content>
+        <FlatGrid
+          spacing={16}
+          data={data}
+          renderItem={({ item }) => (
+            <Card height={100}>
+              <CardTitle
+                title={item.title}
+                icon={
+                  item.id == 2
+                    ? <Ionicons name="caret-up" size={20} color={theme.success} />
+                    : null
+                }
+              />
+              <CardCurrency value={item.value} />
+            </Card>
+          )}
+        />
+      </Content>
     </Container>
   );
 }

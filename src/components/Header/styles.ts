@@ -1,8 +1,4 @@
-import { Dimensions } from 'react-native';
 import styled from 'styled-components/native';
-
-const width = Dimensions.get('window').width;
-const height = Dimensions.get('window').height;
 
 export const Container = styled.View`
   flex-direction: row;
@@ -37,4 +33,8 @@ export const AvatarText = styled.Text`
   color: ${({theme}) => theme.gray};
   font-size: 16px;
   font-weight: bold;
+`
+
+export const SafeArea = styled.SafeAreaView`
+  background-color: ${({theme}) => theme.backgroundSecondary};
 `

@@ -4,7 +4,7 @@ import { Box, Button, Center, Input, Text } from 'native-base';
 import { Ionicons } from '@expo/vector-icons';
 import { Camera } from 'react-native-vision-camera';
 
-import CameraFrame from '~/Components/CameraFrame/CameraFrame';
+import CameraFrame from '~/components/CameraFrame/CameraFrame';
 
 const windowWidth = Dimensions.get('window').width;
 const windowHeight = Dimensions.get('window').height;

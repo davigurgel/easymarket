@@ -1,19 +1,22 @@
 import React from 'react';
 
-import { Container, Title, Profile, Avatar, AvatarText } from './styles';
+import { Container, Title, Profile, Avatar, AvatarText, SafeArea } from './styles';
 
 const Header = () => {
   return (
-    <Container>
-      <Title>Easy Market</Title>
-      <Profile>
-        <Avatar>
-          <AvatarText>
-            D
-          </AvatarText>
-        </Avatar>
-      </Profile>
-    </Container>
+    <>
+      <SafeArea />
+      <Container>
+        <Title>Easy Market</Title>
+        <Profile>
+          <Avatar>
+            <AvatarText>
+              D
+            </AvatarText>
+          </Avatar>
+        </Profile>
+      </Container>
+    </>
   );
 }
 

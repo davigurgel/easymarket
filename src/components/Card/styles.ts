@@ -1,10 +1,21 @@
 import styled from 'styled-components/native';
 
+type heightProps = {
+  height?: number
+}
+
 export const Container = styled.View`
-  width: 100%;
   padding: 16px;
-  border-radius: 30px;
+  border-radius: 15px;
+  justify-content: space-between;
   background-color: ${({theme}) => theme.backgroundSecondary};
+  ${({height}: heightProps) => height && `height: ${height}px;`}
+`
+
+export const TitleContainer = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: flex-start;
 `
 
 export const Title = styled.Text`
@@ -14,6 +25,7 @@ export const Title = styled.Text`
 
 export const Info = styled.Text`
   color: ${({theme}) => theme.white};
-  font-size: 30px;
+  font-size: 24px;
   font-weight: bold;
+  text-align: right;
 `

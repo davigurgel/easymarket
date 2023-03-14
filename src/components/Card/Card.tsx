@@ -1,22 +1,32 @@
 import React from 'react';
-import { Container, Info, Title } from './styles';
+import { Container, Info, Title, TitleContainer } from './styles';
+import { useI18n } from '~/hooks/useI18n';
 
-export const Card = ({children}: {children: React.ReactNode}) => {
+type CardProps = {
+  height?: number,
+  children: React.ReactNode
+}
+
+export const Card = ({height, children}: CardProps) => {
   return (
-    <Container>
+    <Container height={height}>
       {children}
     </Container>
   );
 }
 
-export const CardTitle = ({title}: {title: string}) => {
+export const CardTitle = ({title, icon}: {title: string, icon?: React.ReactNode}) => {
   return (
-    <Title>{title}</Title>
+    <TitleContainer>
+      <Title>{title}</Title>
+      {icon}
+    </TitleContainer>
   )
 }
 
 export const CardCurrency = ({value}: {value: number}) => {
+  const { c } = useI18n()
   return (
-    <Info>{value}</Info>
+    <Info>{c(value)}</Info>
   )
 }
