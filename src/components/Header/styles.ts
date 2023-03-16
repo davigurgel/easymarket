@@ -1,4 +1,5 @@
 import styled from 'styled-components/native';
+import { fontScale } from '~/utils/fontScale';
 
 export const Container = styled.View`
   flex-direction: row;
@@ -10,7 +11,7 @@ export const Container = styled.View`
 
 export const Title = styled.Text`
   font-weight: bold;
-  font-size: 24px;
+  font-size: ${fontScale(24)}px;
   color: ${({theme}) => theme.primary};
 `
 
@@ -31,7 +32,7 @@ export const Avatar = styled.View`
 
 export const AvatarText = styled.Text`
   color: ${({theme}) => theme.gray};
-  font-size: 16px;
+  font-size: ${fontScale(16)}px;
   font-weight: bold;
 `
 
