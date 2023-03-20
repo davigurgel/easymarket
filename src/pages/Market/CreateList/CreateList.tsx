@@ -1,17 +1,20 @@
 import React, { useState } from 'react';
-import { StyleSheet, View, Dimensions } from 'react-native';
-import { Box, Button, Center, Input, Text } from 'native-base';
-import { Ionicons } from '@expo/vector-icons';
 import { Camera } from 'react-native-vision-camera';
+import Button from '~/components/Button/Button';
 
 import CameraFrame from '~/components/CameraFrame/CameraFrame';
-
-const windowWidth = Dimensions.get('window').width;
-const windowHeight = Dimensions.get('window').height;
+import { Card } from '~/components/Card/Card';
+import Input from '~/components/Input/Input';
+import Separator from '~/components/ListItem/Separator';
+import {
+  CameraContainer,
+  Container,
+  FormContainer
+} from './styles';
 
 const CreateList: React.FC = () => {
   const [activeCamera, setActiveCamera] = useState(false)
-  const [cameraText, setCameraText] = useState<any>(null)
+  const [cameraText, setCameraText] = useState(null)
 
   const handleCamera = async () => {
     const cameraPermission = await Camera.getCameraPermissionStatus()
@@ -31,68 +34,37 @@ const CreateList: React.FC = () => {
   }
 
   return (
-    <View style={styles.container}>
-      <Center>
-        <Box w="60%" alignItems="center" backgroundColor="white" p="8">
-          <Box w="100%">
-            <Box mb="3">
-              <Text>Quantidade:</Text>
-              <Input
-                placeholder="Input"
-                w="100%"
-              />
-            </Box>
-            <Box>
-              <Text>Valor:</Text>
-              <Input
-                placeholder="Input"
-                w="100%"
-                value={cameraText || ''}
-                InputRightElement={
-                  <Button
-                    variant="solid"
-                    size="xs"
-                    rounded="none"
-                    h="full"
-                    onPress={handleCamera}
-                  >
-                    <Ionicons name="md-camera-sharp" size={24} color="white" />
-                  </Button>
-                }
-              />
-            </Box>
-          </Box>
-        </Box>
-      </Center>
-    {
+    <Container>
+      <Card>
+        <FormContainer>
+          <Input
+            label='Label'
+          />
+          <Input
+            label='Label'
+          />
+          <Input
+            label='Label'
+            icon='md-camera-sharp'
+            iconPress={handleCamera}
+          />
+          <Separator />
+          <Button label='Adicionar' onPress={() => {}} />
+        </FormContainer>
+      </Card>
+      {
       activeCamera && (
-        <View style={styles.cameraContainer}>
+        <CameraContainer>
           <CameraFrame
             enableCamera={activeCamera}
             onClose={handleCamera}
             handleText={handleCameraValue}
           />
-        </View>
+        </CameraContainer>
       )
     }
-    </View>
+    </Container>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    position: 'relative'
-  },
-  cameraContainer: {
-    position: 'absolute',
-    flex: 1,
-    top: 0,
-    left: 0,
-    zIndex: 99,
-    width: windowWidth,
-    height: windowHeight
-  }
-})
 
 export default CreateList;

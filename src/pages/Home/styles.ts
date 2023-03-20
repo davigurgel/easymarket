@@ -29,7 +29,7 @@ export const NewShoppingList = styled.TouchableOpacity`
   flex-direction: row;
   padding: 8px;
   width: 80%;
-  border-radius: 24px;
+  border-radius: 8px;
   margin: 16px auto;
   background-color: ${({theme}) => darken(0.1, theme.primary)};
   align-items: center;
