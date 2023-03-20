@@ -65,20 +65,20 @@ function Home({navigation}: Navigation) {
         <Content>
           <Card height={100} width={50}>
             <CardTitle
-              title='Última compra:'
+              title={t('general.lastPurchase')}
             />
             <CardCurrency value={200.99} />
           </Card>
           <Card height={100} width={50}>
             <CardTitle
-              title='Último mês:'
+              title={t('general.lastMonth')}
               icon={<Ionicons name="caret-up" size={20} color={theme.success} />}
             />
             <CardCurrency value={2170.99} />
           </Card>
           <Card>
             <CardTitle
-              title='Últimos 6 meses: '
+              title={t('general.lastHalfYear')}
               icon={<Entypo name="area-graph" size={24} color={theme.primary} />}
             />
             <LineChart
@@ -121,7 +121,7 @@ function Home({navigation}: Navigation) {
           </Card>
           <Card>
             <CardTitle
-              title='Últimas compras: '
+              title={t('general.purchaseList')}
               icon={<Ionicons name="list" size={24} color={theme.primary} />}
             />
             <FlatList
@@ -141,7 +141,7 @@ function Home({navigation}: Navigation) {
       <NewShoppingContainer>
         <NewShoppingList onPress={goToCreateList}>
           <Entypo name="add-to-list" size={24} color={theme.white} />
-          <NewShoppingListText>Novas compras</NewShoppingListText>
+          <NewShoppingListText>{ t('routes.createList') }</NewShoppingListText>
         </NewShoppingList>
         <SafeAreaView edges={['bottom']} />
       </NewShoppingContainer>

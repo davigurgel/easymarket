@@ -9,10 +9,31 @@ export const Container = styled.View`
   padding: 16px 24px;
 `
 
+export const InfoContainer = styled.View`
+  flex: 1;
+  flex-direction: row;
+  align-items: center;
+  gap: 16px;
+  justify-content: center;
+`
+
+export const ActionButton = styled.TouchableOpacity`
+`
+
+export const TextContainer = styled.View`
+  flex: 1;
+  justify-content: flex-start;
+  align-items: flex-start;
+`
+
 export const Title = styled.Text`
   font-weight: bold;
   font-size: ${fontScale(24)}px;
   color: ${({theme}) => theme.primary};
+`
+
+export const Subtitle = styled(Title)`
+  font-size: ${fontScale(12)}px;
 `
 
 export const Profile = styled.View`
